@@ -47,7 +47,7 @@ const CityScene = ({ state, update, onNext }: Props) => {
               animate={{ opacity: 0.5 }}
               className="font-body text-lg text-cream-dark/90 italic text-center"
             >
-              บีบบีบ... เสียงคนพูดคุย... ความวุ่นวายของเมือง...
+              ปี้นปี้น... เสียงคนพูดคุย... ความวุ่นวายของเมือง...
             </motion.p>
 
             <motion.button

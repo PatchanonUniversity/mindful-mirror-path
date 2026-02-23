@@ -24,7 +24,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 เขาเพิ่งวางความคาดหวังเรื่อง '${state.userExpectation}'
 ทิ้งไว้ในตะกร้า
 
-จงเลือก 'ดอกไม้' 1 ชนิด
+จงเลือก 'ดอกไม้' 1 ชนิดที่ไม่ใช่ดอกบัว ที่เหมาะสมกับข้อมูลที่ส่ง
 ตอบกลับเป็น JSON เท่านั้น:
 {
   "name": "ชื่อดอกไม้",
