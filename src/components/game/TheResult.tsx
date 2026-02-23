@@ -18,19 +18,29 @@ const TheResult = ({ state, update, onNext }: Props) => {
     const fetchFlower = async () => {
       setIsLoading(true);
 
-      const res = await fetch("/api/gemini", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(state),
-      });
-      if (!res.ok) {
-        throw new Error("Failed to fetch flower");
+      try {
+        const res = await fetch("/api/gemini", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(state),
+        });
+
+        if (!res.ok) {
+          throw new Error("Fetch failed");
+        }
+
+        const data = await res.json();
+        setFlower(data);
+      } catch (error) {
+        console.error(error);
+
+        setFlower({
+          name: "ดอกเดซี่",
+          meaning: "ไม่ว่าผลลัพธ์จะเป็นยังไง ชั้นภูมิใจในตัวเธอเสมอนะ",
+        });
+      } finally {
+        setIsLoading(false);
       }
-
-      const data = await res.json();
-
-      setFlower(data);
-      setIsLoading(false);
     };
 
     fetchFlower();
