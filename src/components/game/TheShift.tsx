@@ -53,7 +53,7 @@ const TheShift = ({ state, update, onNext }: Props) => {
             className="space-y-8 flex flex-col items-center" // เพิ่ม flex-col และ items-center เพื่อให้ปุ่มอยู่กลาง
           >
             <p className="narrator-text text-muted-foreground opacity-50">
-              ฉากเปลี่ยนสู่ความสงบ... เสียงเมืองเริ่มจางหายไป
+              เสียงเมืองเริ่มจางหายไป... ความสงบเข้ามาเเทน
             </p>
 
             <motion.button
@@ -158,10 +158,9 @@ const TheShift = ({ state, update, onNext }: Props) => {
               onClick={() => setSubStep(4)}
               whileHover={{
                 scale: 1.1,
-                backgroundColor: "rgba(0, 0, 0, 0.1)", // เปลี่ยนเป็นสีดำจางๆ ตอน Hover
+                backgroundColor: "rgba(0, 0, 0, 0.1)",
               }}
               whileTap={{ scale: 0.95 }}
-              // เปลี่ยน border เป็นสีดำ/40 และ text เป็นสีดำ/70 เพื่อให้ตัดกับพื้นหลังขาว
               className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
             >
               <span className="mb-1 text-2xl font-bold font-serif tracking-widest">

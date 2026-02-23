@@ -1,46 +1,7 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { GameState } from "./GameContainer";
-
-// Mock flower data based on user's journey
-const getFlowerResult = (
-  state: GameState,
-): { name: string; meaning: string } => {
-  const flowers = [
-    {
-      name: "ดอกซากุระ (Sakura)",
-      meaning:
-        "ความงามของชีวิตที่เปลี่ยนแปลง — เหมือนกลีบดอกที่ร่วงหล่น แต่ทุกฤดูกาลมันจะกลับมาบานใหม่เสมอ ชีวิตของคุณก็เช่นกัน",
-    },
-    {
-      name: "ดอกทานตะวัน (Sunflower)",
-      meaning:
-        "การหันหน้าเข้าหาแสง — ไม่ว่าคืนจะมืดแค่ไหน คุณก็ยังมีพลังที่จะหันหน้าเข้าหาสิ่งที่สดใสได้เสมอ",
-    },
-    {
-      name: "ดอกลาเวนเดอร์ (Lavender)",
-      meaning:
-        "ความสงบภายใน — คุณไม่จำเป็นต้องวิ่งเร็วที่สุด แค่เดินในจังหวะของตัวเอง แล้วกลิ่นหอมจะมาเอง",
-    },
-    {
-      name: "ดอกแดนดิไลออน (Dandelion)",
-      meaning:
-        "ความหวังที่ลอยไปตามลม — ทุกครั้งที่คุณเป่าความฝัน มันจะไปเติบโตในที่ที่คุณคาดไม่ถึง",
-    },
-    {
-      name: "ดอกโลตัส (Lotus)",
-      meaning:
-        "การเติบโตจากโคลนตม — ความยากลำบากที่ผ่านมาคือดินที่หล่อเลี้ยงให้คุณเบ่งบานได้อย่างงดงาม",
-    },
-  ];
-
-  const seed =
-    (state.userName.length +
-      state.userHobby.length +
-      (state.userDream?.length || 0)) %
-    flowers.length;
-  return flowers[seed];
-};
+import { getFutureSelfMessage } from "@/config/gemini";
 
 interface Props {
   state: GameState;
@@ -50,7 +11,19 @@ interface Props {
 
 const TheResult = ({ state, update, onNext }: Props) => {
   const [subStep, setSubStep] = useState(0);
-  const flower = getFlowerResult(state);
+
+  const [flower, setFlower] = useState({ name: "", meaning: "" });
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchFlower = async () => {
+      setIsLoading(true);
+      const data = await getFutureSelfMessage(state);
+      setFlower(data);
+      setIsLoading(false);
+    };
+    fetchFlower();
+  }, []);
 
   return (
     <motion.div
@@ -72,50 +45,69 @@ const TheResult = ({ state, update, onNext }: Props) => {
               "อ่ะ…นี่ เราให้"
             </p>
 
-            <motion.button
-              onClick={() => setSubStep(1)}
-              whileHover={{
-                scale: 1.1,
-                backgroundColor: "rgba(0, 0, 0, 0.1)",
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
-            >
-              <span className="mb-1 text-2xl font-bold font-serif tracking-widest">
-                ...
-              </span>
-            </motion.button>
+            {!isLoading && (
+              <motion.button
+                onClick={() => setSubStep(1)}
+                whileHover={{
+                  scale: 1.1,
+                  backgroundColor: "rgba(0, 0, 0, 0.1)",
+                }}
+                whileTap={{ scale: 0.95 }}
+                className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
+              >
+                <span className="mb-1 text-2xl font-bold font-serif tracking-widest">
+                  ...
+                </span>
+              </motion.button>
+            )}
           </motion.div>
         )}
 
-        {subStep === 1 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="space-y-6 flex flex-col items-center"
-          >
-            <p className="dialogue-text text-muted-foreground">
-              "ดอกไม้ดอกนี้คือ{" "}
-              <span className="text-primary font-semibold">{flower.name}</span>"
+        {isLoading ? (
+          <div className="flex flex-col items-center space-y-4">
+            <p className="italic text-slate-400">
+              กำลังเลือกดอกไม้ที่เหมาะกับคุณ...
             </p>
-            <p className="font-serif text-lg text-muted-foreground leading-relaxed">
-              {flower.meaning}
-            </p>
-            <motion.button
-              onClick={() => setSubStep(2)}
-              whileHover={{
-                scale: 1.1,
-                backgroundColor: "rgba(0, 0, 0, 0.1)",
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
+          </div>
+        ) : (
+          subStep === 1 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              className="space-y-6 flex flex-col items-center text-center"
             >
-              <span className="mb-1 text-2xl font-bold font-serif tracking-widest">
-                ...
-              </span>
-            </motion.button>
-          </motion.div>
+              <p className="dialogue-text text-muted-foreground">
+                "ดอกไม้ดอกนี้คือ{" "}
+                <span className="text-slate-800 font-semibold">
+                  {flower.name}
+                </span>
+                "
+              </p>
+
+              <img
+                src="../../../public/mockFlower.png"
+                alt={flower.name}
+                className="w-40 h-40 object-contain"
+              />
+              <p className="font-serif text-lg text-muted-foreground leading-relaxed px-4">
+                {flower.meaning}
+              </p>
+              <motion.button
+                onClick={() => setSubStep(2)}
+                whileHover={{
+                  scale: 1.1,
+                  backgroundColor: "rgba(0, 0, 0, 0.1)",
+                }}
+                whileTap={{ scale: 0.95 }}
+                className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
+              >
+                <span className="mb-1 text-2xl font-bold font-serif tracking-widest">
+                  ...
+                </span>
+              </motion.button>
+            </motion.div>
+          )
         )}
 
         {subStep === 2 && (
@@ -153,7 +145,7 @@ const TheResult = ({ state, update, onNext }: Props) => {
           >
             <p className="dialogue-text italic text-muted-foreground">
               "ไม่ว่าผลลัพธ์จะเป็นยังไง ฉันภูมิใจในตัวเธอเสมอนะ
-              เธอเก่งที่สุดอยู๋เเล้ว"
+              เธอเก่งที่สุดอยู่เเล้ว"
             </p>
             <motion.button
               onClick={() => setSubStep(4)}
