@@ -62,9 +62,8 @@ const Disclaimer = ({ onNext }: Props) => {
           >
             {/* <h3 className="font-serif text-lg text-foreground">นโยบายข้อมูล</h3> */}
             <p className="font-body text-sm text-muted-foreground leading-relaxed">
-              ข้อมูลที่คุณกรอกจะถูกใช้ระหว่างการเดินทางเท่านั้น
-              จะไม่มีการเก็บหรือแชร์ข้อมูลส่วนตัวของคุณไปที่ใด
-              เมื่อปิดหน้าเว็บข้อมูลทั้งหมดจะหายไป
+              ข้อมูลที่คุณกรอกจะถูกใช้ระหว่างการเดินเเละจะถูกนำไปประมวลผลด้วย
+              Google AI เพื่อแนะนำเส้นทางที่เหมาะสมที่สุดสำหรับคุณ
             </p>
 
             <label className="flex items-center gap-3 cursor-pointer justify-center">

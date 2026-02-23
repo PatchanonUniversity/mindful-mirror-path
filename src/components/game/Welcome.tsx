@@ -51,7 +51,7 @@ const Welcome = ({ state, update, onNext }: Props) => {
             className="space-y-6"
           >
             <p className="dialogue-text">
-              ก่อนจะเริ่มบอกชื่อให้ฉันรู้จักหน่อยได้มั้ย?
+              ก่อนที่จะเริ่ม ขอทราบนามสมมติขอบคุณ?
             </p>
 
             <motion.form
