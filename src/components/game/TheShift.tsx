@@ -151,7 +151,7 @@ const TheShift = ({ state, update, onNext }: Props) => {
             className="space-y-10 flex flex-col items-center"
           >
             <p className="font-serif text-lg">
-              เอ้ะ! เดี๋ยวนะ เธอรู้ได้ไงว่าชั้น...
+              {state.userName} : เอ้ะ! เดี๋ยวนะ เธอรู้ได้ไงว่าชั้น...
             </p>
 
             <motion.button

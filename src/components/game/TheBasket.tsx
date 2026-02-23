@@ -62,7 +62,9 @@ const TheBasket = ({ state, update, onNext }: Props) => {
             transition={{ duration: 1 }}
             className="space-y-6 flex flex-col items-center"
           >
-            <p className="font-serif text-xl">"เราไม่มีอะไรจะให้นะสิ"</p>
+            <p className="font-serif text-xl">
+              {state.userName} : "เราไม่มีอะไรจะให้นะสิ"
+            </p>
             <motion.button
               onClick={() => setSubStep(2)}
               whileHover={{

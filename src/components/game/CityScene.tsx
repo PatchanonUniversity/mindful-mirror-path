@@ -149,7 +149,7 @@ const CityScene = ({ state, update, onNext }: Props) => {
             transition={{ duration: 1 }}
             className="font-serif text-lg text-cream/80"
           >
-            เดี๋ยวนะ! คุณคือใคร? รู้จักชื่อฉันได้ไง?
+            {state.userName} : เดี๋ยวนะ! คุณคือใคร? รู้จักชื่อฉันได้ไง?
           </motion.p>
         )}
 
