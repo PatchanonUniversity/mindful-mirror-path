@@ -1,0 +1,137 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;1,300&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 96%;
+    --foreground: 25 10% 22%;
+
+    --card: 40 30% 93%;
+    --card-foreground: 25 10% 22%;
+
+    --popover: 40 33% 96%;
+    --popover-foreground: 25 10% 22%;
+
+    --primary: 25 60% 45%;
+    --primary-foreground: 40 33% 96%;
+
+    --secondary: 35 25% 88%;
+    --secondary-foreground: 25 10% 30%;
+
+    --muted: 35 20% 90%;
+    --muted-foreground: 25 8% 50%;
+
+    --accent: 150 20% 45%;
+    --accent-foreground: 40 33% 96%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 35 20% 85%;
+    --input: 35 20% 85%;
+    --ring: 25 60% 45%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 40 30% 94%;
+    --sidebar-foreground: 25 10% 26%;
+    --sidebar-primary: 25 60% 45%;
+    --sidebar-primary-foreground: 40 33% 96%;
+    --sidebar-accent: 35 25% 90%;
+    --sidebar-accent-foreground: 25 10% 22%;
+    --sidebar-border: 35 20% 85%;
+    --sidebar-ring: 25 60% 45%;
+
+    /* Custom tokens */
+    --cream: 40 33% 96%;
+    --cream-dark: 35 25% 88%;
+    --charcoal: 25 10% 22%;
+    --charcoal-light: 25 8% 50%;
+    --warm: 25 60% 45%;
+    --warm-light: 30 50% 70%;
+    --sage: 150 20% 45%;
+    --sage-light: 150 15% 75%;
+    --blush: 10 40% 75%;
+    --city-dark: 220 15% 25%;
+    --city-muted: 220 10% 40%;
+  }
+
+  .dark {
+    --background: 25 10% 10%;
+    --foreground: 40 20% 90%;
+    --card: 25 10% 13%;
+    --card-foreground: 40 20% 90%;
+    --popover: 25 10% 10%;
+    --popover-foreground: 40 20% 90%;
+    --primary: 30 50% 60%;
+    --primary-foreground: 25 10% 10%;
+    --secondary: 25 15% 20%;
+    --secondary-foreground: 40 20% 85%;
+    --muted: 25 15% 18%;
+    --muted-foreground: 35 10% 60%;
+    --accent: 150 15% 40%;
+    --accent-foreground: 40 20% 90%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 25 15% 20%;
+    --input: 25 15% 20%;
+    --ring: 30 50% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .game-input {
+    @apply w-full bg-transparent border-b-2 border-warm/30 focus:border-warm 
+           outline-none py-2 px-1 font-body text-foreground placeholder:text-muted-foreground/50
+           transition-colors duration-500 text-lg;
+  }
+
+  .game-input-dark {
+    @apply w-full bg-transparent border-b-2 border-cream-dark/30 focus:border-cream-dark
+           outline-none py-2 px-1 font-body text-cream placeholder:text-cream-dark/50
+           transition-colors duration-500 text-lg;
+  }
+
+  .dialogue-text {
+    @apply font-serif text-xl md:text-2xl leading-relaxed tracking-wide;
+  }
+
+  .narrator-text {
+    @apply font-body text-base md:text-lg text-muted-foreground italic leading-relaxed;
+  }
+
+  .choice-button {
+    @apply px-6 py-3 rounded-lg border border-warm/30 text-foreground font-body
+           hover:bg-warm/10 hover:border-warm/60 transition-all duration-300 cursor-pointer;
+  }
+
+  .phase-container {
+    @apply min-h-screen flex flex-col items-center justify-center px-6 py-12 max-w-2xl mx-auto;
+  }
+
+  .enter-hint {
+    @apply text-sm text-muted-foreground/40 mt-4 font-body;
+  }
+}
