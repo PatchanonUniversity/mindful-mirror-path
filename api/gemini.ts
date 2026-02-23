@@ -23,8 +23,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 ชีวิตช่วงนี้คือ ${state.userLife}
 เขาเพิ่งวางความคาดหวังเรื่อง '${state.userExpectation}'
 ทิ้งไว้ในตะกร้า
-
-จงเลือก 'ดอกไม้' 1 ชนิดที่ไม่ใช่ดอกบัว ที่เหมาะสมกับข้อมูลที่ส่ง
+เหตุผลต้องเชื่อมโยงกับ hobby, dream และ feeling
+จงเลือกดอกไม้ 1 ชนิดที่ห้ามใช้สัญลักษณ์ทางศาสนา
+ต้องเป็นดอกไม้ที่สะท้อน hobby, dream และ feeling โดยตรง
 ตอบกลับเป็น JSON เท่านั้น:
 {
   "name": "ชื่อดอกไม้",
