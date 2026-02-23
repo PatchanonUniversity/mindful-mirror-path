@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import type { GameState } from "./GameContainer";
-import { getFutureSelfMessage } from "@/config/gemini";
 
 interface Props {
   state: GameState;
@@ -18,12 +17,24 @@ const TheResult = ({ state, update, onNext }: Props) => {
   useEffect(() => {
     const fetchFlower = async () => {
       setIsLoading(true);
-      const data = await getFutureSelfMessage(state);
+
+      const res = await fetch("/api/gemini", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(state),
+      });
+      if (!res.ok) {
+        throw new Error("Failed to fetch flower");
+      }
+
+      const data = await res.json();
+
       setFlower(data);
       setIsLoading(false);
     };
+
     fetchFlower();
-  }, []);
+  }, [state]);
 
   return (
     <motion.div
