@@ -97,7 +97,7 @@ const TheResult = ({ state, update, onNext }: Props) => {
               </p>
 
               <img
-                src="../../../public/mockFlower.png"
+                src="/mockFlower.png"
                 alt={flower.name}
                 className="w-40 h-40 object-contain"
               />
