@@ -51,16 +51,35 @@ const GameContainer = ({ playMusic }: Props) => {
   const [step, setStep] = useState(0);
   const [gameState, setGameState] = useState<GameState>(initialState);
   useEffect(() => {
+    let extraSound: HTMLAudioElement | null = null;
+
+    // จัดการเพลงหลักตาม Step
     if (step === 0) {
       playMusic("/sonican-slow-piano-cinematic-mood-329858.mp3");
     }
+
     if (step === 2) {
       playMusic("/km007-street-ambience-9267.mp3");
+
+      // สร้างเสียงแตร
+      extraSound = new Audio("/universfield-automobile-horn-02-352065.mp3");
+      extraSound.loop = true;
+      extraSound.volume = 0.2;
+      extraSound.play().catch((err) => console.log("Audio play failed:", err));
     }
+
     if (step === 3) {
       playMusic("/tunetank-ambient-piano-relaxing-music-347950.mp3");
     }
-  }, [step]);
+
+    return () => {
+      if (extraSound) {
+        extraSound.pause();
+        extraSound.src = "";
+        extraSound = null;
+      }
+    };
+  }, [step, playMusic]);
 
   const update = (partial: Partial<GameState>) => {
     setGameState((prev) => ({ ...prev, ...partial }));

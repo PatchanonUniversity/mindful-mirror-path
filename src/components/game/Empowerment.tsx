@@ -143,8 +143,8 @@ const Empowerment = ({ state, update, onNext }: Props) => {
             className="space-y-6 flex flex-col items-center"
           >
             <p className="dialogue-text text-muted-foreground">
-              "เธอหนะ
-              เก่งอยู่แล้วถ้าโลกนี้ไม่มีใครชมเราอย่างน้อยก็ยังมีตัวเราเองที่ชมนะ"
+              "เธอหนะ เก่งอยู่แล้ว
+              ถ้าโลกนี้ไม่มีใครชมเราอย่างน้อยก็ยังมีตัวเราเองที่ชมนะ"
             </p>
             <motion.button
               onClick={() => setSubStep(2)}

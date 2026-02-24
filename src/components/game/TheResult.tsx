@@ -214,8 +214,9 @@ const TheResult = ({ state, update, onNext }: Props) => {
             className="space-y-6 flex flex-col items-center"
           >
             <p className="narrator-text">
-              เงาปริศนาค่อยๆ จางหายไป... พร้อมกับเสียงถนนคนเดิน
-              ความวุ่นวายเริ่มกลับมา
+              เงาปริศนาค่อยๆ ชัดขึ้นจนเห็นหน้าลางๆ คล้ายๆตัวเราในอนาคต
+              และค่อยๆจางหายไป... พร้อมกับเสียงถนนคนเดิน
+              ความวุ่นวายที่เริ่มกลับมา
             </p>
             <motion.p
               initial={{ opacity: 0 }}

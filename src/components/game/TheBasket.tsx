@@ -130,7 +130,7 @@ const TheBasket = ({ state, update, onNext }: Props) => {
             className="space-y-4 flex flex-col items-center"
           >
             <p className="dialogue-text text-muted-foreground">
-              ปล่อยความคาดหวังของคนอื่นลงไป
+              ปล่อยความคาดหวังของคนอื่นทิ้งไป
             </p>
 
             <form onSubmit={handleExpectation} className="space-y-2">
@@ -143,7 +143,7 @@ const TheBasket = ({ state, update, onNext }: Props) => {
                     handleExpectation(e);
                   }
                 }}
-                placeholder="ความคาดหวังที่คุณแบก"
+                placeholder="สิ่งไหนที่คุณแบกรับไว้ ทั้งที่ไม่ใช่ตัวคุณ"
                 className="game-input w-full min-h-[80px] resize-none text-center pt-8 pb-0 leading-tight"
                 autoFocus
               />

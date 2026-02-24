@@ -12,12 +12,24 @@ const DeepQuestions = ({ state, update, onNext }: Props) => {
   const [subStep, setSubStep] = useState(0);
   const [chasing, setChasing] = useState("");
   const [tired, setTired] = useState("");
+  const floatingWords = [
+    "ความรัก",
+    "ความสงบ",
+    "ความสุข",
+    "ความปลอดภัย",
+    "ความหวัง",
+    "การยอมรับ",
+    "มิตรภาพ เพื่อนพ้อง",
+    "ภูมิใจ",
+    "อิสระ",
+    "คำชม",
+  ];
 
   const handleChasing = (e: React.FormEvent) => {
     e.preventDefault();
     if (!chasing.trim()) return;
     update({ userChasing: chasing.trim() });
-    setSubStep(1);
+    setSubStep(0.5);
   };
 
   const handleChoice = (isSelf: boolean) => {
@@ -83,6 +95,51 @@ const DeepQuestions = ({ state, update, onNext }: Props) => {
                 ...
               </span>
             </motion.button>
+          </motion.div>
+        )}
+        {subStep === 0.5 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="relative w-full h-screen flex flex-col items-center justify-center"
+          >
+            {/* ข้อความกลาง */}
+            <p className="dialogue-text text-muted-foreground relative z-10 text-center">
+              คุณทบทวนถึงความต้องการที่แท้จริง ซึ่งซ่อนอยู่ลึกในจิตใจ
+            </p>
+
+            {/* ปุ่ม */}
+            <motion.button
+              onClick={() => setSubStep(1)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2.2, duration: 1 }}
+              className="relative z-10 mt-6 w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center"
+            >
+              <span className="mb-1 text-2xl font-bold font-serif">...</span>
+            </motion.button>
+            {floatingWords.map((word, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: -20 }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  repeatType: "mirror",
+                  delay: i * 0.6,
+                }}
+                className="absolute text-slate-700 text-sm font-light"
+                style={{
+                  top: `${Math.random() * 80 + 5}%`,
+                  left: `${Math.random() * 80 + 5}%`,
+                  transform: `rotate(${Math.random() * 30 - 15}deg)`,
+                }}
+              >
+                {word}
+              </motion.span>
+            ))}
           </motion.div>
         )}
 

@@ -33,7 +33,7 @@ const TheShift = ({ state, update, onNext }: Props) => {
     e.preventDefault();
     if (!userLife.trim()) return;
     update({ userLife: userLife.trim() });
-    onNext();
+    setSubStep(5);
   };
 
   return (
@@ -85,45 +85,56 @@ const TheShift = ({ state, update, onNext }: Props) => {
         )}
 
         {subStep === 1 && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="space-y-6"
-          >
-            <p className="dialogue-text text-muted-foreground">
-              "ฉันจำได้นะว่าเธอชอบ {state.userHobby}"
-            </p>
-
+          <>
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.5, duration: 1 }}
-              className="dialogue-text text-muted-foreground"
+              transition={{ duration: 1 }}
+              className="font-serif text-lg text-cream/80"
             >
-              ยังชอบ {state.userHobby} อยู่มั้ย?
+              ในที่สุดเราก็ได้เจอกัน
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 3, duration: 1 }}
-              className="flex gap-4 justify-center"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              className="space-y-6"
             >
-              <button
-                onClick={() => handleStillLikes(true)}
-                className="choice-button"
+              <p className="dialogue-text text-muted-foreground">
+                "ฉันจำได้นะว่าเธอชอบ {state.userHobby}"
+              </p>
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.5, duration: 1 }}
+                className="dialogue-text text-muted-foreground"
               >
-                ชอบสิ
-              </button>
-              <button
-                onClick={() => handleStillLikes(false)}
-                className="choice-button"
+                ยังชอบ {state.userHobby} อยู่มั้ย?
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 3, duration: 1 }}
+                className="flex gap-4 justify-center"
               >
-                ไม่ได้ชอบแล้ว
-              </button>
+                <button
+                  onClick={() => handleStillLikes(true)}
+                  className="choice-button"
+                >
+                  ชอบสิ
+                </button>
+                <button
+                  onClick={() => handleStillLikes(false)}
+                  className="choice-button"
+                >
+                  ไม่ได้ชอบแล้ว
+                </button>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </>
         )}
 
         {subStep === 2 && (
@@ -159,7 +170,7 @@ const TheShift = ({ state, update, onNext }: Props) => {
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 1.2 }}
+              transition={{ delay: 1, duration: 0.8 }}
               className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
             >
               <span className="mb-1 text-2xl font-bold font-serif tracking-widest">
@@ -174,7 +185,6 @@ const TheShift = ({ state, update, onNext }: Props) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
-            // เพิ่ม flex และ items-center เพื่อให้ปุ่มวงกลมอยู่ตรงกลาง
             className="space-y-10 flex flex-col items-center"
           >
             <p className="font-serif text-lg">
@@ -206,9 +216,23 @@ const TheShift = ({ state, update, onNext }: Props) => {
             transition={{ duration: 1 }}
             className="space-y-6 flex flex-col items-center"
           >
-            <p className="dialogue-text text-muted-foreground">
-              "ชีวิตช่วงนี้เป็นไงบ้าง อยากเล่าให้ชั้นฟังมั้ย?"
-            </p>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              className="dialogue-text text-muted-foreground"
+            >
+              เงาปริศนาพูดขัดขึ้นมา
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2, duration: 1 }}
+              className="dialogue-text text-muted-foreground"
+            >
+              "ชีวิตช่วงนี้เป็นไงบ้าง อยากเล่าให้ฉันฟังไหม?"
+            </motion.p>
 
             <motion.form
               initial={{ opacity: 0 }}
@@ -236,6 +260,39 @@ const TheShift = ({ state, update, onNext }: Props) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 0.8 }}
+              className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
+            >
+              <span className="mb-1 text-2xl font-bold font-serif tracking-widest">
+                ...
+              </span>
+            </motion.button>
+          </motion.div>
+        )}
+        {subStep === 5 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="space-y-6 flex flex-col items-center text-center"
+          >
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              className="dialogue-text text-muted-foreground"
+            >
+              เงาปริศนานิ่งพร้อมรับฟัง ไม่ขัด ไม่ตัดสิน
+            </motion.p>
+            <motion.button
+              onClick={onNext}
+              whileHover={{
+                scale: 1.1,
+                backgroundColor: "rgba(0, 0, 0, 0.1)",
+              }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
               className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
             >
               <span className="mb-1 text-2xl font-bold font-serif tracking-widest">
