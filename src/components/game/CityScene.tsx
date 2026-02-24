@@ -47,17 +47,28 @@ const CityScene = ({ state, update, onNext }: Props) => {
               animate={{ opacity: 0.5 }}
               className="font-body text-lg text-cream-dark/90 italic text-center"
             >
-              ปี้นปี้น... เสียงคนพูดคุย... ความวุ่นวายของเมือง...
+              ปี้นปี้น... เสียงคนพูดคุย... เสียงความวุ่นวายของเมือง...
             </motion.p>
 
             <motion.button
               onClick={() => setSubStep(1)} // แนะนำให้ไป Step 1 ตามลำดับเนื้อเรื่องนะครับ
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0 }}
+              transition={{ duration: 1.5 }}
+              animate={{ opacity: 1 }}
               className="w-12 h-12 rounded-full border border-cream/20 bg-cream/5 backdrop-blur-sm flex items-center justify-center text-cream/60 hover:border-cream/50 hover:text-cream transition-all shadow-lg"
             >
               <span className="mb-1 text-xl font-serif">...</span>
             </motion.button>
+            <motion.img
+              src="/scene1.gif"
+              alt="loading"
+              className="w-2/4 opacity-80"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            />
           </motion.div>
         )}
 
@@ -71,7 +82,7 @@ const CityScene = ({ state, update, onNext }: Props) => {
           >
             <motion.p
               animate={{ opacity: 0.4 }}
-              className="narrator-text text-cream-dark/90 text-center max-w-md"
+              className="narrator-text text-cream-dark text-center max-w-md"
             >
               เงาปริศนาปรากฏตัวออกมาท่ามกลางความวุ่นวาย... แต่ยังเห็นหน้าไม่ชัด
             </motion.p>
@@ -87,6 +98,15 @@ const CityScene = ({ state, update, onNext }: Props) => {
             >
               <span className="mb-1 text-xl font-serif italic">...</span>
             </motion.button>
+
+            <motion.img
+              src="/scene2.gif"
+              alt="loading"
+              className="w-2/4 opacity-80"
+              initial={{ opacity: 0, scale: 0.3 }} // smallest
+              animate={{ opacity: 1, scale: 1.5 }} // biggest
+              transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
+            />
           </motion.div>
         )}
 
@@ -105,6 +125,9 @@ const CityScene = ({ state, update, onNext }: Props) => {
               onClick={() => setSubStep(3)}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
               className="w-12 h-12 rounded-full border border-cream/20 bg-cream/5 backdrop-blur-sm flex items-center justify-center text-cream/60 hover:border-cream/50 hover:text-cream transition-all"
             >
               <span className="mb-1 text-xl font-serif">...</span>
@@ -117,7 +140,7 @@ const CityScene = ({ state, update, onNext }: Props) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
-            className="space-y-4"
+            className="space-y-4 flex flex-col items-center"
           >
             <p className="font-serif text-xl md:text-2xl text-cream-dark/90 leading-relaxed">
               "ว่าไง {state.userName} รู้สึกยังไงบ้างตอนนี้?"
@@ -139,6 +162,22 @@ const CityScene = ({ state, update, onNext }: Props) => {
                 autoFocus
               />
             </motion.form>
+            <motion.button
+              onClick={handleFeelingSubmit}
+              whileHover={{
+                scale: 1.1,
+                backgroundColor: "rgba(0, 0, 0, 0.1)",
+              }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 0.8 }}
+              className="w-12 h-12 rounded-full border border-cream/20 bg-cream/5 backdrop-blur-sm flex items-center justify-center text-cream/60 hover:border-cream/50 hover:text-cream transition-all"
+            >
+              <span className="mb-1 text-2xl font-bold font-serif tracking-widest">
+                ...
+              </span>
+            </motion.button>
           </motion.div>
         )}
 
@@ -170,7 +209,7 @@ const CityScene = ({ state, update, onNext }: Props) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.5 }}
             transition={{ duration: 1.5 }}
-            className="narrator-text text-cream-dark/40"
+            className="narrator-text text-cream-dark"
           >
             บรรยากาศเริ่มสงบลง...
           </motion.p>

@@ -48,10 +48,10 @@ const Welcome = ({ state, update, onNext }: Props) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5, duration: 1 }}
-            className="space-y-6"
+            className="space-y-6 flex flex-col items-center"
           >
             <p className="dialogue-text">
-              ก่อนที่จะเริ่ม ขอทราบนามสมมติขอบคุณ?
+              ก่อนที่จะเริ่ม ขอทราบนามสมมติของคุณ?
             </p>
 
             <motion.form
@@ -59,7 +59,7 @@ const Welcome = ({ state, update, onNext }: Props) => {
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.8 }}
               onSubmit={handleNameSubmit}
-              className="space-y-2"
+              className="space-y-2 flex flex-col items-center"
             >
               <input
                 type="text"
@@ -70,13 +70,26 @@ const Welcome = ({ state, update, onNext }: Props) => {
                 autoFocus
               />
             </motion.form>
+            <motion.button
+              onClick={handleNameSubmit}
+              whileHover={{
+                scale: 1.1,
+                backgroundColor: "rgba(0, 0, 0, 0.1)",
+              }}
+              whileTap={{ scale: 0.95 }}
+              className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
+            >
+              <span className="mb-1 text-2xl font-bold font-serif tracking-widest">
+                ...
+              </span>
+            </motion.button>
           </motion.div>
         ) : (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
-            className="space-y-6"
+            className="space-y-6 flex flex-col items-center"
           >
             <p className="dialogue-text">สวัสดี {state.userName}</p>
 
@@ -94,7 +107,7 @@ const Welcome = ({ state, update, onNext }: Props) => {
               animate={{ opacity: 1 }}
               transition={{ delay: 2.5, duration: 1 }}
               onSubmit={handleHobbySubmit}
-              className="space-y-2"
+              className="space-y-2 flex flex-col items-center"
             >
               <input
                 type="text"
@@ -104,6 +117,23 @@ const Welcome = ({ state, update, onNext }: Props) => {
                 autoFocus
               />
             </motion.form>
+
+            <motion.button
+              onClick={handleHobbySubmit}
+              whileHover={{
+                scale: 1.1,
+                backgroundColor: "rgba(0, 0, 0, 0.1)",
+              }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2.5, duration: 1 }}
+              className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
+            >
+              <span className="mb-1 text-2xl font-bold font-serif tracking-widest">
+                ...
+              </span>
+            </motion.button>
           </motion.div>
         )}
       </motion.div>

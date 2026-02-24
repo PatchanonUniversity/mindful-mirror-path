@@ -3,9 +3,10 @@ import { useState } from "react";
 
 interface Props {
   onNext: () => void;
+  playMusic: (src: string) => void;
 }
 
-const Disclaimer = ({ onNext }: Props) => {
+const Disclaimer = ({ onNext, playMusic }: Props) => {
   const [subStep, setSubStep] = useState(0);
   const [agreed, setAgreed] = useState(false);
 
@@ -45,7 +46,10 @@ const Disclaimer = ({ onNext }: Props) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.8 }}
-              onClick={() => setSubStep(1)}
+              onClick={() => {
+                playMusic("/sonican-slow-piano-cinematic-mood-329858.mp3");
+                setSubStep(1);
+              }}
               className="choice-button"
             >
               ถัดไป

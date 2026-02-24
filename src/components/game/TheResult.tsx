@@ -36,7 +36,8 @@ const TheResult = ({ state, update, onNext }: Props) => {
 
         setFlower({
           name: "ดอกเดซี่",
-          meaning: "ไม่ว่าผลลัพธ์จะเป็นยังไง ชั้นภูมิใจในตัวเธอเสมอนะ",
+          meaning:
+            "ดอกเดซี่เป็นสัญลักษณ์ของชีวิตที่เรียบง่ายแต่มั่นคง เติบโตได้แม้ในพื้นที่ธรรมดา ไม่ต้องโดดเด่นหรือสมบูรณ์แบบเพื่อจะมีคุณค่า สื่อถึงการเริ่มต้นใหม่ ความบริสุทธิ์ใจ และความหวังเล็ก ๆ ที่คอยย้ำเตือนว่า ต่อให้โลกจะวุ่นวายหรือโหดร้ายเพียงใด เราก็ยังสามารถยืนหยัด เป็นตัวของตัวเอง และค่อย ๆ เบ่งบานในจังหวะของเราได้เสมอ ไม่ว่าผลลัพธ์จะเป็นยังไง ชั้นภูมิใจในตัวเธอเสมอนะ",
         });
       } finally {
         setIsLoading(false);
@@ -74,6 +75,7 @@ const TheResult = ({ state, update, onNext }: Props) => {
                   backgroundColor: "rgba(0, 0, 0, 0.1)",
                 }}
                 whileTap={{ scale: 0.95 }}
+                transition={{ duration: 1 }}
                 className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
               >
                 <span className="mb-1 text-2xl font-bold font-serif tracking-widest">
@@ -105,15 +107,23 @@ const TheResult = ({ state, update, onNext }: Props) => {
                 </span>
                 "
               </p>
-
-              <img
-                src="/mockFlower.png"
+              <motion.img
+                src="/scene6.gif"
                 alt={flower.name}
                 className="w-40 h-40 object-contain"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
               />
-              <p className="font-serif text-lg text-muted-foreground leading-relaxed px-4">
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="font-serif text-lg text-muted-foreground leading-relaxed px-4"
+              >
                 {flower.meaning}
-              </p>
+              </motion.p>
               <motion.button
                 onClick={() => setSubStep(2)}
                 whileHover={{
@@ -121,6 +131,7 @@ const TheResult = ({ state, update, onNext }: Props) => {
                   backgroundColor: "rgba(0, 0, 0, 0.1)",
                 }}
                 whileTap={{ scale: 0.95 }}
+                transition={{ duration: 1 }}
                 className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
               >
                 <span className="mb-1 text-2xl font-bold font-serif tracking-widest">
@@ -148,6 +159,7 @@ const TheResult = ({ state, update, onNext }: Props) => {
                 backgroundColor: "rgba(0, 0, 0, 0.1)",
               }}
               whileTap={{ scale: 0.95 }}
+              transition={{ duration: 1 }}
               className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
             >
               <span className="mb-1 text-2xl font-bold font-serif tracking-widest">
@@ -175,6 +187,7 @@ const TheResult = ({ state, update, onNext }: Props) => {
                 backgroundColor: "rgba(0, 0, 0, 0.1)",
               }}
               whileTap={{ scale: 0.95 }}
+              transition={{ duration: 1.2 }}
               className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
             >
               <span className="mb-1 text-2xl font-bold font-serif tracking-widest">
@@ -219,12 +232,25 @@ const TheResult = ({ state, update, onNext }: Props) => {
                 backgroundColor: "rgba(0, 0, 0, 0.1)",
               }}
               whileTap={{ scale: 0.95 }}
+              transition={{ delay: 3, duration: 1 }}
               className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
             >
               <span className="mb-1 text-2xl font-bold font-serif tracking-widest">
                 ...
               </span>
             </motion.button>
+            <motion.img
+              src="/scene2.gif"
+              alt="loading"
+              className="w-2/4 opacity-80"
+              initial={{ opacity: 1, scale: 1.5 }} // เริ่มใหญ่ทันที
+              animate={{ opacity: 0, scale: 1.5 }} // ขนาดเท่าเดิม แค่จาง
+              transition={{
+                delay: 3,
+                duration: 1.2,
+                ease: "easeOut",
+              }}
+            />
           </motion.div>
         )}
       </div>

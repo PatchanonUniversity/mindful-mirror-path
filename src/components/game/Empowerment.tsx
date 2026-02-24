@@ -65,7 +65,7 @@ const Empowerment = ({ state, update, onNext }: Props) => {
             className="space-y-6 flex flex-col items-center"
           >
             <p className="dialogue-text text-muted-foreground">
-              "อืมม เข้าใจเลย เข้าใจดีเลยแหละ"
+              "ชั้นเข้าใจเลย เข้าใจดีเลยแหละ"
             </p>
             <motion.button
               onClick={() => setSubStep(1)}
@@ -74,12 +74,23 @@ const Empowerment = ({ state, update, onNext }: Props) => {
                 backgroundColor: "rgba(0, 0, 0, 0.1)",
               }}
               whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
               className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
             >
               <span className="mb-1 text-2xl font-bold font-serif tracking-widest">
                 ...
               </span>
             </motion.button>
+            <motion.img
+              src="/scene3.gif"
+              alt="loading"
+              className="w-2/4 opacity-80"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+            />
           </motion.div>
         )}
 
@@ -103,12 +114,23 @@ const Empowerment = ({ state, update, onNext }: Props) => {
                 backgroundColor: "rgba(0, 0, 0, 0.1)",
               }}
               whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
               className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
             >
               <span className="mb-1 text-2xl font-bold font-serif tracking-widest">
                 ...
               </span>
             </motion.button>
+            <motion.img
+              src="/scene3.gif"
+              alt="loading"
+              className="w-2/4 opacity-80"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+            />
           </motion.div>
         )}
 
@@ -131,12 +153,23 @@ const Empowerment = ({ state, update, onNext }: Props) => {
                 backgroundColor: "rgba(0, 0, 0, 0.1)",
               }}
               whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
               className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
             >
               <span className="mb-1 text-2xl font-bold font-serif tracking-widest">
                 ...
               </span>
             </motion.button>
+            <motion.img
+              src="/scene3.gif"
+              alt="loading"
+              className="w-2/4 opacity-80"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+            />
           </motion.div>
         )}
 
@@ -179,7 +212,7 @@ const Empowerment = ({ state, update, onNext }: Props) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
-            className="space-y-4"
+            className="space-y-4 flex flex-col items-center"
           >
             <p className="dialogue-text text-muted-foreground">
               "เล่าให้ฟังหน่อยสิ อยากทำอะไร?"
@@ -200,6 +233,22 @@ const Empowerment = ({ state, update, onNext }: Props) => {
                 autoFocus
               />
             </motion.form>
+            <motion.button
+              onClick={handleDream}
+              whileHover={{
+                scale: 1.1,
+                backgroundColor: "rgba(0, 0, 0, 0.1)", // เปลี่ยนเป็นสีดำจางๆ ตอน Hover
+              }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 0.8 }}
+              className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
+            >
+              <span className="mb-1 text-2xl font-bold font-serif tracking-widest">
+                ...
+              </span>
+            </motion.button>
           </motion.div>
         )}
 
@@ -222,6 +271,7 @@ const Empowerment = ({ state, update, onNext }: Props) => {
                 backgroundColor: "rgba(0, 0, 0, 0.1)",
               }}
               whileTap={{ scale: 0.95 }}
+              transition={{ duration: 1 }}
               className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
             >
               <span className="mb-1 text-2xl font-bold font-serif tracking-widest">
@@ -240,7 +290,7 @@ const Empowerment = ({ state, update, onNext }: Props) => {
             className="space-y-6 flex flex-col items-center"
           >
             <p className="dialogue-text text-muted-foreground">
-              "อืมมม {state.userDream}! ฉันก็ชอบเหมือนกัน"
+              "อืมมม {state.userDream}! ฉันก็คิดแบบนั้นเหมือนกัน"
             </p>
 
             <motion.button
@@ -250,6 +300,7 @@ const Empowerment = ({ state, update, onNext }: Props) => {
                 backgroundColor: "rgba(0, 0, 0, 0.1)",
               }}
               whileTap={{ scale: 0.95 }}
+              transition={{ duration: 1 }}
               className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
             >
               <span className="mb-1 text-2xl font-bold font-serif tracking-widest">
@@ -279,6 +330,7 @@ const Empowerment = ({ state, update, onNext }: Props) => {
                 backgroundColor: "rgba(0, 0, 0, 0.1)",
               }}
               whileTap={{ scale: 0.95 }}
+              transition={{ duration: 1 }}
               className="w-14 h-14 rounded-full border-2 border-slate-400 bg-white/50 backdrop-blur-md flex items-center justify-center text-slate-700 shadow-md cursor-pointer transition-all hover:border-slate-600 hover:text-slate-900"
             >
               <span className="mb-1 text-2xl font-bold font-serif tracking-widest">

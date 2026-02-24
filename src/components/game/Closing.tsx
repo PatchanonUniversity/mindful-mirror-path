@@ -24,7 +24,7 @@ const Closing = ({ state, onNext }: Props) => {
           <div className="w-16 h-px bg-warm/40 mx-auto" />
 
           <blockquote className="font-serif text-xl md:text-2xl leading-relaxed text-foreground italic">
-            "การตัดสินใจ ควรอิงจากประสบการณ์ แต่เมื่อใดที่ตัดสินใจพลาดไป
+            "การตัดสินใจควรอิงจากประสบการณ์ แต่เมื่อใดที่ตัดสินใจพลาดไป
             นั่นแหละคือประสบการณ์"
           </blockquote>
 

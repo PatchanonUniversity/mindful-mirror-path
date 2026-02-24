@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import Disclaimer from "@/components/game/Disclaimer";
 import Welcome from "@/components/game/Welcome";
@@ -43,9 +43,24 @@ const initialState: GameState = {
   userLetter: "",
 };
 
-const GameContainer = () => {
+interface Props {
+  playMusic: (src: string) => void;
+}
+
+const GameContainer = ({ playMusic }: Props) => {
   const [step, setStep] = useState(0);
   const [gameState, setGameState] = useState<GameState>(initialState);
+  useEffect(() => {
+    if (step === 0) {
+      playMusic("/sonican-slow-piano-cinematic-mood-329858.mp3");
+    }
+    if (step === 2) {
+      playMusic("/km007-street-ambience-9267.mp3");
+    }
+    if (step === 3) {
+      playMusic("/tunetank-ambient-piano-relaxing-music-347950.mp3");
+    }
+  }, [step]);
 
   const update = (partial: Partial<GameState>) => {
     setGameState((prev) => ({ ...prev, ...partial }));
@@ -56,7 +71,9 @@ const GameContainer = () => {
   return (
     <div className="min-h-screen w-full">
       <AnimatePresence mode="wait">
-        {step === 0 && <Disclaimer key="disclaimer" onNext={next} />}
+        {step === 0 && (
+          <Disclaimer key="disclaimer" onNext={next} playMusic={playMusic} />
+        )}{" "}
         {step === 1 && (
           <Welcome
             key="welcome"
