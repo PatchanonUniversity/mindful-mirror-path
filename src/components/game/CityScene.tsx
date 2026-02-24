@@ -12,8 +12,8 @@ interface Props {
 const CARS = [
   { id: 1, side: "left", y: "15%", speed: 4, delay: 0, icon: "🚗" },
   { id: 2, side: "right", y: "30%", speed: 6, delay: 1, icon: "🚕" },
-  { id: 4, side: "right", y: "70%", speed: 5, delay: 2, icon: "🚓" },
-  { id: 5, side: "left", y: "85%", speed: 7, delay: 1.5, icon: "🏎️" },
+  { id: 4, side: "right", y: "70%", speed: 5, delay: 2, icon: "🏍️🏍️" },
+  { id: 5, side: "left", y: "85%", speed: 7, delay: 1.5, icon: "🚌" },
 ];
 
 const CityScene = ({ state, update, onNext }: Props) => {
