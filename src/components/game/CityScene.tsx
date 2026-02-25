@@ -3,6 +3,7 @@ import { useState } from "react";
 import type { GameState } from "./GameContainer";
 
 interface Props {
+  onFadeSound: () => void;
   state: GameState;
   update: (partial: Partial<GameState>) => void;
   onNext: () => void;
@@ -16,7 +17,7 @@ const CARS = [
   { id: 5, side: "left", y: "85%", speed: 7, delay: 1.5, icon: "🚌" },
 ];
 
-const CityScene = ({ state, update, onNext }: Props) => {
+const CityScene = ({ onFadeSound, state, update, onNext }: Props) => {
   const [subStep, setSubStep] = useState(0);
   const [feeling, setFeeling] = useState("");
 
@@ -29,6 +30,11 @@ const CityScene = ({ state, update, onNext }: Props) => {
     setTimeout(() => setSubStep(5), 8000);
     setTimeout(() => setSubStep(6), 13000);
     setTimeout(() => onNext(), 16000);
+  };
+
+  const handleFadeHornSound = () => {
+    onFadeSound();
+    setSubStep(1);
   };
 
   return (
@@ -93,7 +99,7 @@ const CityScene = ({ state, update, onNext }: Props) => {
             </motion.p>
 
             <motion.button
-              onClick={() => setSubStep(1)} // แนะนำให้ไป Step 1 ตามลำดับเนื้อเรื่องนะครับ
+              onClick={handleFadeHornSound}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0 }}

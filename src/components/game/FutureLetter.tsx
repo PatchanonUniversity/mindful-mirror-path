@@ -11,12 +11,38 @@ const FutureLetter = ({ state, update }: Props) => {
   // สร้าง local state เพื่อเช็คว่าเขียนจดหมายเสร็จหรือยัง
   const [isEmailStep, setIsEmailStep] = useState(false);
   const [email, setEmail] = useState("");
+  const [isSending, setIsSending] = useState(false);
 
   const isReady = state.userLetter.trim().length > 0;
   const isEmailValid = email.includes("@") && email.includes(".");
 
   const now = new Date();
   const date = now.toISOString().split("T")[0];
+
+  const handleSendLetter = async () => {
+    setIsSending(true);
+    try {
+      const response = await fetch("/api/save-letter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          name: state.userName,
+          content: state.userLetter,
+        }),
+      });
+
+      if (response.ok) {
+        alert("จดหมายถูกส่งเข้าสู่กาลเวลาแล้ว...");
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error("Error saving letter:", error);
+      alert("เกิดข้อผิดพลาด กรุณาลองใหม่");
+    } finally {
+      setIsSending(false);
+    }
+  };
 
   return (
     <motion.div
@@ -39,9 +65,6 @@ const FutureLetter = ({ state, update }: Props) => {
                 <h2 className=" text-2xl text-foreground">
                   ถึง: {state.userName} ในอีก 5 ปี
                 </h2>
-                <p className="text-15px]  uppercase tracking-widest">
-                  จาก: {state.userName} {date}
-                </p>
               </div>
 
               <textarea
@@ -50,7 +73,10 @@ const FutureLetter = ({ state, update }: Props) => {
                 placeholder="พิมพ์สิ่งที่อยากจะบอกตัวคุณในอีกห้าปีข้างหน้า"
                 className="w-full h-80 p-6 bg-warm/5 border border-warm/20 rounded-2xl outline-none font-body leading-relaxed focus:border-warm/40 transition-all shadow-inner"
               />
-
+              <p className="mt-6 text-center font-body text-sm text-muted-foreground whitespace-pre-line">
+                ด้วยรักและขอบคุณ,{"\n"}
+                จาก {state.userName} {date}
+              </p>
               <div className="flex justify-center">
                 <button
                   disabled={!isReady}
@@ -75,7 +101,7 @@ const FutureLetter = ({ state, update }: Props) => {
                   จดหมายของคุณถูกบันทึกแล้ว
                 </h2> */}
                 <p className="font-body text-lg text-muted-foreground font-semibold leading-relaxed">
-                  เราจะส่งจดหมายฉบับนี้ให้คุณตามอีเมลที่กรอกมา <br />
+                  เราจะส่งจดหมายฉบับนี้ให้คุณตามอีเมลที่กรอก <br />
                   <span className="text-foreground text-muted-foreground font-semibold italic text-sm">
                     ในอีกห้าปีข้างหน้า
                   </span>
@@ -92,8 +118,8 @@ const FutureLetter = ({ state, update }: Props) => {
                 />
 
                 <button
-                  disabled={!isEmailValid}
-                  onClick={() => window.location.reload()}
+                  disabled={!isEmailValid || isSending}
+                  onClick={handleSendLetter}
                   className="px-8 py-3 bg-foreground text-background rounded-full font-body text-sm hover:opacity-90 transition-all disabled:opacity-20"
                 >
                   ส่งจดหมายและจบการเดินทาง

@@ -243,7 +243,7 @@ const TheResult = ({ state, update, onNext }: Props) => {
             <motion.img
               src="/scene2.gif"
               alt="loading"
-              className="w-2/4 opacity-80"
+              className="w-2/4 opacity-80 pointer-events-none"
               initial={{ opacity: 1, scale: 1.5 }} // เริ่มใหญ่ทันที
               animate={{ opacity: 0, scale: 1.5 }} // ขนาดเท่าเดิม แค่จาง
               transition={{

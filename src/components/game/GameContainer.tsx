@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AnimatePresence } from "framer-motion";
 import Disclaimer from "@/components/game/Disclaimer";
 import Welcome from "@/components/game/Welcome";
@@ -50,10 +50,30 @@ interface Props {
 const GameContainer = ({ playMusic }: Props) => {
   const [step, setStep] = useState(0);
   const [gameState, setGameState] = useState<GameState>(initialState);
-  useEffect(() => {
-    let extraSound: HTMLAudioElement | null = null;
+  const extraSoundRef = useRef<HTMLAudioElement | null>(null);
 
-    // จัดการเพลงหลักตาม Step
+  const stopExtraSound = () => {
+    const audio = extraSoundRef.current;
+    if (!audio) return;
+
+    // Smooth fade out
+    const fadeInterval = setInterval(() => {
+      if (audio.volume > 0.05) {
+        audio.volume -= 0.05;
+      } else {
+        audio.pause();
+        audio.src = "";
+        extraSoundRef.current = null;
+        clearInterval(fadeInterval);
+      }
+    }, 100); // Fades out over ~0.4 seconds
+  };
+  useEffect(() => {
+    if (extraSoundRef.current) {
+      extraSoundRef.current.pause();
+      extraSoundRef.current = null;
+    }
+
     if (step === 0) {
       playMusic("/sonican-slow-piano-cinematic-mood-329858.mp3");
     }
@@ -61,11 +81,11 @@ const GameContainer = ({ playMusic }: Props) => {
     if (step === 2) {
       playMusic("/km007-street-ambience-9267.mp3");
 
-      // สร้างเสียงแตร
-      extraSound = new Audio("/universfield-automobile-horn-02-352065.mp3");
-      extraSound.loop = true;
-      extraSound.volume = 0.2;
-      extraSound.play().catch((err) => console.log("Audio play failed:", err));
+      const audio = new Audio("/universfield-automobile-horn-02-352065.mp3");
+      audio.loop = true;
+      audio.volume = 0.2;
+      audio.play().catch((err) => console.log(err));
+      extraSoundRef.current = audio;
     }
 
     if (step === 3) {
@@ -73,10 +93,8 @@ const GameContainer = ({ playMusic }: Props) => {
     }
 
     return () => {
-      if (extraSound) {
-        extraSound.pause();
-        extraSound.src = "";
-        extraSound = null;
+      if (extraSoundRef.current) {
+        extraSoundRef.current.pause();
       }
     };
   }, [step, playMusic]);
@@ -107,6 +125,7 @@ const GameContainer = ({ playMusic }: Props) => {
             state={gameState}
             update={update}
             onNext={next}
+            onFadeSound={stopExtraSound}
           />
         )}
         {step === 3 && (
