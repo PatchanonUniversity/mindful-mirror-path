@@ -1,10 +1,12 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { neon } from "@neondatabase/serverless";
-const sql = neon(process.env.DATABASE_URL!);
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  if (!process.env.DATABASE_URL) {
+    return res.status(500).json({ error: "DATABASE_URL not set" });
+  }
   if (req.method !== "POST")
     return res.status(405).json({ error: "Method not allowed" });
-
+  const sql = neon(process.env.DATABASE_URL!);
   const { email, name, content } = req.body;
 
   if (!email || !content) {
