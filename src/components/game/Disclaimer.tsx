@@ -68,7 +68,9 @@ const Disclaimer = ({ onNext, playMusic }: Props) => {
             {/* <h3 className="font-serif text-lg text-foreground">นโยบายข้อมูล</h3> */}
             <p className="font-body text-sm text-muted-foreground leading-relaxed">
               ข้อมูลที่คุณกรอกจะถูกใช้ระหว่างการเดินเเละจะถูกนำไปประมวลผลด้วย
-              Google AI เพื่อแนะนำเส้นทางที่เหมาะสมที่สุดสำหรับคุณ
+              Google AI เพื่อแนะนำเส้นทางที่เหมาะสมที่สุดสำหรับคุณ <br />
+              นอกจากนี้ ระบบจะจัดเก็บอีเมลที่คุณกรอกมาและเนื้อหาที่คุณส่ง
+              เพื่อใช้สำหรับระบบการส่งอีเมล
             </p>
 
             <label className="flex items-center gap-3 cursor-pointer justify-center">
