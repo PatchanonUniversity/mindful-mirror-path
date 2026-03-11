@@ -7,6 +7,7 @@ interface Props {
   update: (partial: Partial<GameState>) => void;
 }
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 const FutureLetter = ({ state, update }: Props) => {
   // สร้าง local state เพื่อเช็คว่าเขียนจดหมายเสร็จหรือยัง
   const [isEmailStep, setIsEmailStep] = useState(false);
@@ -22,7 +23,7 @@ const FutureLetter = ({ state, update }: Props) => {
   const handleSendLetter = async () => {
     setIsSending(true);
     try {
-      const response = await fetch("/api/save-letter", {
+      const response = await fetch(`${BACKEND_URL}/api/save-letter`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -7,7 +7,7 @@ interface Props {
   update: (partial: Partial<GameState>) => void;
   onNext: () => void;
 }
-
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 const TheResult = ({ state, update, onNext }: Props) => {
   const [subStep, setSubStep] = useState(0);
 
@@ -19,7 +19,7 @@ const TheResult = ({ state, update, onNext }: Props) => {
       setIsLoading(true);
 
       try {
-        const res = await fetch("/api/gemini", {
+        const res = await fetch(`${BACKEND_URL}/api/gemini`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(state),
