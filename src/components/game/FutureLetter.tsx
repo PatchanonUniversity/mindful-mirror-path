@@ -23,7 +23,7 @@ const FutureLetter = ({ state, update }: Props) => {
   const handleSendLetter = async () => {
     setIsSending(true);
     try {
-      const response = await fetch(`${BACKEND_URL}/api/save-letter`, {
+      const response = await fetch(`${BACKEND_URL}/api/v1/letters`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

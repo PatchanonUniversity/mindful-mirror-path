@@ -19,7 +19,7 @@ const TheResult = ({ state, update, onNext }: Props) => {
       setIsLoading(true);
 
       try {
-        const res = await fetch(`${BACKEND_URL}/api/gemini`, {
+        const res = await fetch(`${BACKEND_URL}/api/v1/flowers`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(state),
